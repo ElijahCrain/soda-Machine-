@@ -11,6 +11,10 @@ namespace SodaMachine
         //Member Variables (Has A)
         private List<Coin> _register;
         private List<Can> _inventory;
+        public Quarter quarter;
+        public Dime dime;
+        public Nickel nickel;
+        public Penny penny;
 
         //Constructor (Spawner)
         public SodaMachine()
@@ -26,7 +30,23 @@ namespace SodaMachine
         //A method to fill the sodamachines register with coin objects.
         public void FillRegister()
         {
-           
+			for (int i = 0; i <= 20 ; i++)
+			{
+                _register.Add(quarter);
+			}
+			for (int i = 0; i <= 10; i++)
+			{
+                _register.Add(dime);
+			}
+			for (int i = 0; i <= 20; i++)
+			{
+                _register.Add(nickel);
+			}
+			for (int i = 0; i <= 50; i++)
+			{
+                _register.Add(penny);
+			}
+
         }
         //A method to fill the sodamachines inventory with soda can objects.
         public void FillInventory()
