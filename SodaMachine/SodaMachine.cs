@@ -11,10 +11,8 @@ namespace SodaMachine
         //Member Variables (Has A)
         private List<Coin> _register;
         private List<Can> _inventory;
-        public Quarter quarter;
-        public Dime dime;
-        public Nickel nickel;
-        public Penny penny;
+        
+        
 
         //Constructor (Spawner)
         public SodaMachine()
@@ -32,18 +30,22 @@ namespace SodaMachine
         {
 			for (int i = 0; i <= 20 ; i++)
 			{
+                Quarter quarter = new Quarter();
                 _register.Add(quarter);
 			}
 			for (int i = 0; i <= 10; i++)
 			{
+                Dime dime = new Dime();
                 _register.Add(dime);
 			}
 			for (int i = 0; i <= 20; i++)
 			{
+                Nickel nickel = new Nickel();
                 _register.Add(nickel);
 			}
 			for (int i = 0; i <= 50; i++)
 			{
+                Penny penny = new Penny();
                 _register.Add(penny);
 			}
 
@@ -51,7 +53,24 @@ namespace SodaMachine
         //A method to fill the sodamachines inventory with soda can objects.
         public void FillInventory()
         {
+			for (int i = 0; i <=12; i++)
+			{
+                Cola cola = new Cola();
+                _inventory.Add(cola);
+            }
+			for (int i = 0; i <= 12; i++)
+			{
+                RootBeer rootBeer = new RootBeer();
+                _inventory.Add(rootBeer);
+            }
+			for (int i = 0; i <= 12; i++)
+			{
+                OrangeSoda orangeSoda = new OrangeSoda();
+                _inventory.Add(orangeSoda);
+			}
             
+
+            //for loop to fill inventory
         }
         //Method to be called to start a transaction.
         //Takes in a customer which can be passed freely to which ever method needs it.
@@ -117,7 +136,8 @@ namespace SodaMachine
         //Takes in a list of coins to returnt he total value of the coins as a double.
         private double TotalCoinValue(List<Coin> payment)
         {
-           
+           //look at list of coins, add up the Value property of the list as a new varaible
+           //return that variable
         }
         //Puts a list of coins into the soda machines register.
         private void DepositCoinsIntoRegister(List<Coin> coins)
