@@ -94,7 +94,7 @@ namespace SodaMachine
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)
         {
-            
+            return null;
         }
 
         //This is the main method for calculating the result of the transaction.
@@ -114,6 +114,19 @@ namespace SodaMachine
         //If the change cannot be made, return null.
         private List<Coin> GatherChange(double changeValue)
         {
+            // changeValue : 75
+
+            // Create a temp list of coin
+
+            // Create a while loop while chageValue > 0
+
+                // if changeValue > 25
+                    // Remove quarter from the register
+                    // Add it to temp list
+                    // minus changeValue - 25
+
+                // else if changeValue >10
+                    
             return null;
         }
         //Reusable method to check if the register has a coin of that name.
