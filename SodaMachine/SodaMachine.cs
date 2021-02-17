@@ -122,10 +122,11 @@ namespace SodaMachine
         {
             foreach (Coin coinType in _register)
             {
-                if (_register.Contains(coinType) )
+                if ( name == coinType.Name)
                 {
                     return true;
                 }
+				
             }
             return false;
         }
@@ -135,12 +136,15 @@ namespace SodaMachine
         {
 			foreach(Coin coinType in _register)
 			{
-                if ( coinType == )
+                if (name == coinType.Name )
 				{
-
+                    return coinType;
 				}
-			}
+			   
+				
+            }
             return null;
+            
         }
         //Takes in the total payment amount and the price of can to return the change amount.
         private double DetermineChange(double totalPayment, double canPrice)
