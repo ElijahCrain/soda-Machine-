@@ -131,7 +131,8 @@ namespace SodaMachine
         //Takes in the total payment amount and the price of can to return the change amount.
         private double DetermineChange(double totalPayment, double canPrice)
         {
-            return 0;
+            double correctChange = totalPayment - canPrice;
+                return correctChange;
         }
         //Takes in a list of coins to returnt he total value of the coins as a double.
         private double TotalCoinValue(List<Coin> payment)
@@ -146,7 +147,11 @@ namespace SodaMachine
         //Puts a list of coins into the soda machines register.
         private void DepositCoinsIntoRegister(List<Coin> coins)
         {
-           
+         foreach(Coin coin in coins )
+			{
+                _register.Add(coin);
+			}
+            
         }
     }
 }
