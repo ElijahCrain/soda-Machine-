@@ -94,7 +94,7 @@ namespace SodaMachine
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)
         {
-          
+            
         }
 
         //This is the main method for calculating the result of the transaction.
@@ -114,19 +114,33 @@ namespace SodaMachine
         //If the change cannot be made, return null.
         private List<Coin> GatherChange(double changeValue)
         {
-            
+            return null;
         }
         //Reusable method to check if the register has a coin of that name.
         //If it does have one, return true.  Else, false.
         private bool RegisterHasCoin(string name)
         {
-           
+            foreach (Coin coinType in _register)
+            {
+                if (_register.Contains(coinType) )
+                {
+                    return true;
+                }
+            }
+            return false;
         }
         //Reusable method to return a coin from the register.
         //Returns null if no coin can be found of that name.
         private Coin GetCoinFromRegister(string name)
         {
-            return null;   
+			foreach(Coin coinType in _register)
+			{
+                if ( coinType == )
+				{
+
+				}
+			}
+            return null;
         }
         //Takes in the total payment amount and the price of can to return the change amount.
         private double DetermineChange(double totalPayment, double canPrice)
@@ -137,12 +151,12 @@ namespace SodaMachine
         //Takes in a list of coins to returnt he total value of the coins as a double.
         private double TotalCoinValue(List<Coin> payment)
         {
-            double paymentSum = 0;
+            double paymentTotal = 0;
             foreach(Coin coin in payment)
 			{
-                paymentSum += coin.Value;
+                paymentTotal += coin.Value;
 			}
-            return paymentSum;
+            return paymentTotal;
         }
         //Puts a list of coins into the soda machines register.
         private void DepositCoinsIntoRegister(List<Coin> coins)
