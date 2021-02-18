@@ -94,14 +94,21 @@ namespace SodaMachine
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)
         {
-            foreach(Can soda in _inventory)
+			for (int i = 0; i < _inventory.Count; i++)
 			{
-                if (nameOfSoda == soda.Name)
+                if(_inventory[i].Name == nameOfSoda)
 				{
-                    return soda;
+                    _inventory.RemoveAt(i);
+                    return _inventory[i];
+					
 				}
+				else
+				{
+					Console.WriteLine("We dont have soda");
+				}
+
 			}
-            return null;
+            return null; 
         }
 
         //This is the main method for calculating the result of the transaction.
@@ -120,10 +127,25 @@ namespace SodaMachine
 
             if (totalValue > chosenSoda.Price && GatherChange(totalchange) != null )
 			{
-				
+                GetSodaFromInventory(chosenSoda.Name);
+                customer.AddCanToBackpack(chosenSoda);
+                customer.AddCoinsIntoWallet(changelist);
 
 			}
+            else if (totalValue > chosenSoda.Price && GatherChange(totalchange) == null)
+			{
+                customer.AddCoinsIntoWallet(payment);
+			}
+            else if (totalValue == chosenSoda.Price)
+			{
+                DepositCoinsIntoRegister(payment);
+                customer.AddCanToBackpack(chosenSoda);
+			}
+			else if (totalValue != chosenSoda.Price)
+			{
 
+                customer.AddCoinsIntoWallet(payment);
+			}
         }
         //Takes in the value of the amount of change needed.
         //Attempts to gather all the required coins from the sodamachine's register to make change.
