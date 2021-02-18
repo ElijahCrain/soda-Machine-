@@ -12,7 +12,7 @@ namespace SodaMachine
         private List<Coin> _register;
         private List<Can> _inventory;
         
-        
+                 
 
         //Constructor (Spawner)
         public SodaMachine()
@@ -89,7 +89,10 @@ namespace SodaMachine
         //pass payment to the calculate transaction method to finish up the transaction based on the results.
         private void Transaction(Customer customer)
         {
-           
+            string customerSelection = "";
+            Can cansCoice = GetSodaFromInventory(customerSelection);
+            List<Coin> payment = customer.GatherCoinsFromWallet(cansCoice);
+            CalculateTransaction(payment, cansCoice, customer);
         }
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)
