@@ -94,19 +94,36 @@ namespace SodaMachine
         //Gets a soda from the inventory based on the name of the soda.
         private Can GetSodaFromInventory(string nameOfSoda)
         {
+            foreach(Can soda in _inventory)
+			{
+                if (nameOfSoda == soda.Name)
+				{
+                    return soda;
+				}
+			}
             return null;
         }
 
         //This is the main method for calculating the result of the transaction.
         //It takes in the payment from the customer, the soda object they selected, and the customer who is purchasing the soda.
         //This is the method that will determine the following:
-        //If the payment is greater than the price of the soda, and if the sodamachine has enough change to return: Despense soda, and change to the customer.
+        //If the payment is greater than the price of the soda, and if the sodamachine has enough change to return: Despense soda, 
+        //and change to the customer.
         //If the payment is greater than the cost of the soda, but the machine does not have ample change: Despense payment back to the customer.
         //If the payment is exact to the cost of the soda:  Despense soda.
         //If the payment does not meet the cost of the soda: despense payment back to the customer.
         private void CalculateTransaction(List<Coin> payment, Can chosenSoda, Customer customer)
         {
-           
+            double totalValue = TotalCoinValue(payment);
+            double totalchange = DetermineChange(totalValue, chosenSoda.Price);
+            List<Coin> changelist = GatherChange(totalchange);
+
+            if (totalValue > chosenSoda.Price && GatherChange(totalchange) != null )
+			{
+				
+
+			}
+
         }
         //Takes in the value of the amount of change needed.
         //Attempts to gather all the required coins from the sodamachine's register to make change.
@@ -120,40 +137,57 @@ namespace SodaMachine
             List<Coin> coinsChange = new List<Coin>();
              while (changeValue > .0)
 			{
-                if (changeValue > .25)
+                if (changeValue >= .25)
 				{
-                    RegisterHasCoin("quarter");
-                   Coin quarter = GetCoinFromRegister("quarter");
-                    coinsChange.Add(quarter);
-                    changeValue -=.25;
+					if (RegisterHasCoin("Quarter"))
+					{
+                        Coin quarter = GetCoinFromRegister("Quarter");
+                        coinsChange.Add(quarter);
+                        changeValue -=.25;
+                         continue;
+					}   
                     
                     
 				}
-                else if (changeValue > .10)
+                if (changeValue >= .10)
 				{
-                    RegisterHasCoin("dime");
-                    Coin dime = GetCoinFromRegister("dime");
-                    coinsChange.Add(dime);
-                    changeValue -= .10;
+                   if (RegisterHasCoin("Dime")) 
+					{
+                        Coin dime = GetCoinFromRegister("Dime");
+                        coinsChange.Add(dime);
+                        changeValue -= .10;
+                        continue;
+                    }
+
+                   
                     
 				}
-                else if (changeValue > .5)
+                if (changeValue >= .5)
 				{
-                    RegisterHasCoin("nickel");
-                    Coin nickel = GetCoinFromRegister("nickel");
-                    coinsChange.Add(nickel);
-                    changeValue -=.5;
+                   if (RegisterHasCoin("Nickel"))
+					{
+                        Coin nickel = GetCoinFromRegister("Nickel");
+                        coinsChange.Add(nickel);
+                        changeValue -= .5;
+                        continue;
+                    }
+                    
                     
 				}
-                else if (changeValue > .1)
+                if (changeValue > .01)
 				{
-                    RegisterHasCoin("penny");
-                    Coin penny = GetCoinFromRegister("penny");
-                    coinsChange.Add(penny);
-                    changeValue -= .1;
+                   if (RegisterHasCoin("Penny"))
+					{
+                        Coin penny = GetCoinFromRegister("Penny");
+                        coinsChange.Add(penny);
+                        changeValue -= .01;
+                        continue;
+                    }
+                    
                    
 				}
-			}return null;
+                return null;
+			}return coinsChange; 
                     
             
         }
