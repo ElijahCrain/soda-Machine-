@@ -112,22 +112,50 @@ namespace SodaMachine
         //Attempts to gather all the required coins from the sodamachine's register to make change.
         //Returns the list of coins as change to despense.
         //If the change cannot be made, return null.
-        private List<Coin> GatherChange(double changeValue)
+        public List<Coin> GatherChange(double changeValue)
         {
             // changeValue : 75
 
             // Create a temp list of coin
-
-            // Create a while loop while chageValue > 0
-
-                // if changeValue > 25
-                    // Remove quarter from the register
-                    // Add it to temp list
-                    // minus changeValue - 25
-
-                // else if changeValue >10
+            List<Coin> coinsChange = new List<Coin>();
+             while (changeValue > .0)
+			{
+                if (changeValue > .25)
+				{
+                    RegisterHasCoin("quarter");
+                   Coin quarter = GetCoinFromRegister("quarter");
+                    coinsChange.Add(quarter);
+                    changeValue -=.25;
                     
-            return null;
+                    
+				}
+                else if (changeValue > .10)
+				{
+                    RegisterHasCoin("dime");
+                    Coin dime = GetCoinFromRegister("dime");
+                    coinsChange.Add(dime);
+                    changeValue -= .10;
+                    
+				}
+                else if (changeValue > .5)
+				{
+                    RegisterHasCoin("nickel");
+                    Coin nickel = GetCoinFromRegister("nickel");
+                    coinsChange.Add(nickel);
+                    changeValue -=.5;
+                    
+				}
+                else if (changeValue > .1)
+				{
+                    RegisterHasCoin("penny");
+                    Coin penny = GetCoinFromRegister("penny");
+                    coinsChange.Add(penny);
+                    changeValue -= .1;
+                   
+				}
+			}return null;
+                    
+            
         }
         //Reusable method to check if the register has a coin of that name.
         //If it does have one, return true.  Else, false.
