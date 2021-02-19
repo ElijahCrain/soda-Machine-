@@ -10,10 +10,10 @@ namespace SodaMachine
     {
         static void Main(string[] args)
         {
-            //Simulation simulation = new Simulation();
-            //simulation.Simulate();
-            SodaMachine sodaMachine = new SodaMachine();
-            sodaMachine.GatherChange(.75);
+            Simulation simulation = new Simulation();
+            simulation.Simulate();
+        //    SodaMachine sodaMachine = new SodaMachine();
+        //    sodaMachine.GatherChange(.75);
         }
     }
 }
